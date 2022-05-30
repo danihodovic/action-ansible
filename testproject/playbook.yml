@@ -1,0 +1,5 @@
+---
+- name: Playbook
+  hosts: foo
+  tasks:
+    - debug: msg="Hello!"

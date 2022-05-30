@@ -1,0 +1,6 @@
+---
+all:
+  hosts:
+    foo:
+      ansible_host: localhost
+      ansible_connection: local

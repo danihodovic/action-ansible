@@ -1,0 +1,29 @@
+---
+name: 'Run Ansible playbooks'
+description: 'Run Ansible Playbooks'
+branding:
+  color: blue
+  icon: play
+inputs:
+  playbook:
+    description: Path of the playbook file
+    required: true
+  inventory_path:
+    description: The inventory to pass to Ansible. Can be a file or a directory.
+    required: true
+  directory:
+    description: The directory where the playbook exists
+  vault_password:
+    description: The vault password
+outputs:
+  output:
+    description: Output of the Ansible run
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    PLAYBOOK_DIR: ${{ inputs.directory }}
+    PLAYBOOK: ${{ inputs.playbook }}
+    VAULT_PASSWORD: ${{ inputs.vault_password }}
+    # Prefixed with ANSIBLE_ = passed to ansible env
+    # e.g ANSIBLE_INVENTORY=./foo/var/bar.yml
